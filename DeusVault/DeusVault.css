@@ -22,12 +22,13 @@
     position: relative;
     left: 0;
     right: 0;
-    width: 950px;
 }
 
 .sheet-body,
+.sheet-options,
 .sheet-fiche {
-    min-width: 800px;
+    width: 1000px;
+    box-sizing: border-box;
 }
 
 .sheet-body,
@@ -347,9 +348,23 @@ input[type="hidden"][name="attr_section"][value="3"] ~ * label[for="section-3"] 
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-input[type="hidden"][name="attr_section"][value="1"] ~ * [data-section-id]:not([data-section-id*="|1|"]),
-input[type="hidden"][name="attr_section"][value="2"] ~ * [data-section-id]:not([data-section-id*="|2|"]),
-input[type="hidden"][name="attr_section"][value="3"] ~ * [data-section-id]:not([data-section-id*="|3|"]) {
+input[type="hidden"][name="attr_fiche_type"][value="pj"]
+    + input[type="hidden"][name="attr_section"][value="1"]
+    ~ *
+    [data-section-id*="|"]:not([data-section-id*="|1|"]),
+input[type="hidden"][name="attr_fiche_type"][value="pj"]
+    + input[type="hidden"][name="attr_section"][value="2"]
+    ~ *
+    [data-section-id*="|"]:not([data-section-id*="|2|"]),
+input[type="hidden"][name="attr_fiche_type"][value="pj"]
+    + input[type="hidden"][name="attr_section"][value="3"]
+    ~ *
+    [data-section-id*="|"]:not([data-section-id*="|3|"]) {
+    display: none !important;
+}
+
+input[type="hidden"][name="attr_fiche_type"][value="pnj"] ~ * [data-section-id]:not([data-section-pnj]),
+input[type="hidden"][name="attr_fiche_type"][value="pj"] ~ * [data-section-pnj]:not([data-section-id]) {
     display: none !important;
 }
 
@@ -678,4 +693,8 @@ input.sheet-mastery-value {
 .sheet-rolltemplate-rt1 .sheet-rt1-roll .inlinerollresult {
     background: transparent;
     border: none;
+}
+
+.sheet-rolltemplate-rt1 .sheet-rt1-rollvalue > span {
+    font-weight: bold;
 }
